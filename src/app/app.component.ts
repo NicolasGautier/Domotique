@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Device} from "./models/device";
+import {DeviceService} from "../services/device.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'tp-domotic';
+
+  devices : Device[] = [];
+  name: string = '';
+
+
+  constructor(private deviceService:DeviceService) {
+  }
+
+  ngOnInit():void {
+    //récupération du tableau du service
+    this.devices = this.deviceService.devices;
+  }
+
+  onAdd() {
+    this.deviceService.add(this.name);
+    this.name ='';
+  }
+
+  onTurnOnAll() {
+
+    this.deviceService.TurnOnAll();
+  }
+
+  onTurnOffAll() {
+
+    this.deviceService.TurnOffAll();
+  }
+
 }

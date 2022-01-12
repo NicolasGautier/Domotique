@@ -1,0 +1,25 @@
+<li class="list-group-item"
+    [ngClass]="{
+    'list-group-item-success': devices.status === 'allumé',
+    'list-group-item-danger': devices.status === 'éteint'
+}" >
+  <div class="row">
+    <div class="col-4">
+  {{indice}} - {{devices.name}} - {{devices.status}}
+    </div>
+    <div class="col-4 d-inline-flex">
+    <button
+      *ngIf="devices.status === 'éteint' "
+      class="btn btn-success" (click)="onTurnOn()">On</button>
+    <button
+      *ngIf="devices.status === 'allumé' "
+      class="btn btn-danger" (click)="onTurnOff()">Off</button>
+    </div>
+
+    <div class="col-4 d-inline-flex">
+      <button
+        class="btn btn-warning">Supprimer</button>
+    </div>
+  </div>
+    <br>
+</li>
